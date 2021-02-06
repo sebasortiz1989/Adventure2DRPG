@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private const string horizontal = "Horizontal";
     private const string vertical = "Vertical";
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,5 +34,8 @@ public class PlayerController : MonoBehaviour
             this.transform.Translate(new Vector3(0, Input.GetAxisRaw(vertical)
                 * walkSpeed * Time.deltaTime, 0));
         }
+
+        anim.SetFloat(horizontal, Input.GetAxisRaw(horizontal));
+        anim.SetFloat(vertical, Input.GetAxisRaw(vertical));
     }
 }
