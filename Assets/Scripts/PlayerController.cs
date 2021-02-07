@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     private const string walkingState = "Walking";
 
     private Animator anim;
+    private Rigidbody2D playerRigidBody;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        playerRigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -31,19 +33,24 @@ public class PlayerController : MonoBehaviour
 
         if (Mathf.Abs(Input.GetAxisRaw(horizontal)) > 0.5f)
         {
-            this.transform.Translate(new Vector3(Input.GetAxisRaw(horizontal) 
-                * walkSpeed * Time.deltaTime, 0, 0));
+            /*this.transform.Translate(new Vector3(Input.GetAxisRaw(horizontal) 
+                * walkSpeed * Time.deltaTime, 0, 0));*/
+            playerRigidBody.velocity = new Vector2(Input.GetAxisRaw(horizontal) * walkSpeed * Time.deltaTime, playerRigidBody.velocity.y);
             walking = true;
             lastMovement = new Vector2(Input.GetAxisRaw(horizontal), 0);
         }
 
         if (Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
         {
-            this.transform.Translate(new Vector3(0, Input.GetAxisRaw(vertical)
-                * walkSpeed * Time.deltaTime, 0));
+            /*this.transform.Translate(new Vector3(0, Input.GetAxisRaw(vertical)
+                * walkSpeed * Time.deltaTime, 0));*/
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, Input.GetAxisRaw(vertical) * walkSpeed * Time.deltaTime);
             walking = true;
             lastMovement = new Vector2(0, Input.GetAxisRaw(vertical));
         }
+
+        if (!walking)
+            playerRigidBody.velocity = Vector2.zero;
 
         anim.SetFloat(horizontal, Input.GetAxisRaw(horizontal));
         anim.SetFloat(vertical, Input.GetAxisRaw(vertical));
