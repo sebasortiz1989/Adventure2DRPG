@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
             walking = true;
             lastMovement = new Vector2(Input.GetAxisRaw(horizontal), 0);
         }
+        else if (walking)
+            playerRigidBody.velocity = new Vector2(0, playerRigidBody.velocity.y);
 
         if (Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
         {
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
             walking = true;
             lastMovement = new Vector2(0, Input.GetAxisRaw(vertical));
         }
+        else if (walking)
+            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, 0);
 
         if (!walking)
             playerRigidBody.velocity = Vector2.zero;
