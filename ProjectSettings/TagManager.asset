@@ -50,6 +50,9 @@ TagManager:
   - name: ForeGround
     uniqueID: 3818105791
     locked: 0
+  - name: Decoration
+    uniqueID: 2990007379
+    locked: 0
   - name: Player
     uniqueID: 2942970319
     locked: 0
