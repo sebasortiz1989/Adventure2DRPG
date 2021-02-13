@@ -18,11 +18,25 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Rigidbody2D playerRigidBody;
 
+    public static bool playerCreated;
+
+    public string nextPlaceName;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         playerRigidBody = GetComponent<Rigidbody2D>();
+
+        if (!playerCreated)
+        {
+            playerCreated = true;
+            DontDestroyOnLoad(this.transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
