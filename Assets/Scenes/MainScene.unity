@@ -6042,6 +6042,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2dbb252f97fac34caad08faa3cfb3bb, type: 3}
+--- !u!4 &176121928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 176121928, guid: 5f01cfa23e7371541b20ead3b9c11a47,
+    type: 3}
+  m_PrefabInstance: {fileID: 8219814156450807978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &376962796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6356,7 +6362,7 @@ GameObject:
   - component: {fileID: 805687286}
   - component: {fileID: 805687287}
   m_Layer: 0
-  m_Name: HitPoint
+  m_Name: SwingZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6474,6 +6480,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  hurtAnimation: {fileID: 8399386320001879053, guid: b24f5f8f527d4b6498920852bfa6926e,
+    type: 3}
+  hitPoint: {fileID: 2110752403}
 --- !u!1 &815582883 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8219814157246434825, guid: 5f01cfa23e7371541b20ead3b9c11a47,
@@ -80299,6 +80308,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2068529168}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2110752403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110752404}
+  m_Layer: 0
+  m_Name: HitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2110752404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110752403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.43, y: 0.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 176121928}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &708033338596878210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80472,12 +80511,12 @@ PrefabInstance:
     - target: {fileID: 3238865108921677576, guid: 20577eb96e02e2f44904844e5e077097,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.88
+      value: -8.88
       objectReference: {fileID: 0}
     - target: {fileID: 3238865108921677576, guid: 20577eb96e02e2f44904844e5e077097,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.21
+      value: 3.43
       objectReference: {fileID: 0}
     - target: {fileID: 3238865108921677576, guid: 20577eb96e02e2f44904844e5e077097,
         type: 3}
