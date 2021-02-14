@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float walkSpeed = 4.0f;
+
     private bool walking = false;
     public Vector2 lastMovement = Vector2.zero;
 
@@ -69,7 +70,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Move();
+            if (Mathf.Abs(Input.GetAxisRaw(horizontal))> 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
+            {
+                walking = true;
+                lastMovement = new Vector2(Input.GetAxisRaw(horizontal), Input.GetAxisRaw(vertical));
+                playerRigidBody.velocity = lastMovement.normalized * walkSpeed * Time.deltaTime;
+            }
         }
 
         if (!walking)
@@ -82,28 +88,4 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat(lastVertical, lastMovement.y);
     }
 
-    private void Move()
-    {
-        if (Mathf.Abs(Input.GetAxisRaw(horizontal)) > 0.5f)
-        {
-            /*this.transform.Translate(new Vector3(Input.GetAxisRaw(horizontal) 
-                * walkSpeed * Time.deltaTime, 0, 0));*/
-            playerRigidBody.velocity = new Vector2(Input.GetAxisRaw(horizontal) * walkSpeed * Time.deltaTime, playerRigidBody.velocity.y);
-            walking = true;
-            lastMovement = new Vector2(Input.GetAxisRaw(horizontal), 0);
-        }
-        else if (walking)
-            playerRigidBody.velocity = new Vector2(0, playerRigidBody.velocity.y);
-
-        if (Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
-        {
-            /*this.transform.Translate(new Vector3(0, Input.GetAxisRaw(vertical)
-                * walkSpeed * Time.deltaTime, 0));*/
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, Input.GetAxisRaw(vertical) * walkSpeed * Time.deltaTime);
-            walking = true;
-            lastMovement = new Vector2(0, Input.GetAxisRaw(vertical));
-        }
-        else if (walking)
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, 0);
-    }
 }

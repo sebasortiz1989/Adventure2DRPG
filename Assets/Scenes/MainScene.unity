@@ -80476,6 +80476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8219814157246434829, guid: 5f01cfa23e7371541b20ead3b9c11a47,
         type: 3}
+      propertyPath: walkSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219814157246434829, guid: 5f01cfa23e7371541b20ead3b9c11a47,
+        type: 3}
       propertyPath: attackTime
       value: 0.5
       objectReference: {fileID: 0}
