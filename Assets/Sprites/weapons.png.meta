@@ -4,19 +4,19 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1098179606456428539
-    second: weapons_0
+    second: gem
   - first:
       213: -5557420877203330147
-    second: weapons_1
+    second: potion
   - first:
       213: -7888296697152109952
-    second: weapons_2
+    second: sword
   - first:
       213: 698664279297640794
-    second: weapons_3
+    second: axe
   - first:
       213: 2912464402848211330
-    second: weapons_4
+    second: wand
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -174,7 +174,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapons_0
+      name: gem
       rect:
         serializedVersion: 2
         x: 0
@@ -182,7 +182,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,7 +195,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_1
+      name: potion
       rect:
         serializedVersion: 2
         x: 32
@@ -203,7 +203,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,15 +216,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_2
+      name: sword
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.25772047, y: 0.2792565}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -237,15 +237,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_3
+      name: axe
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.23080039, y: 0.2846405}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -258,15 +258,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons_4
+      name: wand
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.29540777, y: 0.26848853}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

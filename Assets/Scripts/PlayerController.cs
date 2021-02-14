@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float walkSpeed = 4.0f;
+
     private bool walking = false;
     public Vector2 lastMovement = Vector2.zero;
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private const string lastHorizontal = "LastHorizontal";
     private const string lastVertical = "LastVertical";
     private const string walkingState = "Walking";
+    private const string attackingState = "Attacking";
 
     private Animator anim;
     private Rigidbody2D playerRigidBody;
@@ -21,6 +23,10 @@ public class PlayerController : MonoBehaviour
     public static bool playerCreated;
 
     public string nextPlaceName;
+
+    private bool attacking = false;
+    public float attackTime;
+    private float attackTimeCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -45,27 +51,32 @@ public class PlayerController : MonoBehaviour
         //d = v * t
         walking = false;
 
-        if (Mathf.Abs(Input.GetAxisRaw(horizontal)) > 0.5f)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            /*this.transform.Translate(new Vector3(Input.GetAxisRaw(horizontal) 
-                * walkSpeed * Time.deltaTime, 0, 0));*/
-            playerRigidBody.velocity = new Vector2(Input.GetAxisRaw(horizontal) * walkSpeed * Time.deltaTime, playerRigidBody.velocity.y);
-            walking = true;
-            lastMovement = new Vector2(Input.GetAxisRaw(horizontal), 0);
+            attacking = true;
+            attackTimeCounter = attackTime;
+            playerRigidBody.velocity = Vector2.zero;
+            anim.SetBool(attackingState, true);
         }
-        else if (walking)
-            playerRigidBody.velocity = new Vector2(0, playerRigidBody.velocity.y);
 
-        if (Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
+        if (attacking)
         {
-            /*this.transform.Translate(new Vector3(0, Input.GetAxisRaw(vertical)
-                * walkSpeed * Time.deltaTime, 0));*/
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, Input.GetAxisRaw(vertical) * walkSpeed * Time.deltaTime);
-            walking = true;
-            lastMovement = new Vector2(0, Input.GetAxisRaw(vertical));
+            attackTimeCounter -= Time.deltaTime;
+            if (attackTimeCounter < 0)
+            {
+                attacking = false;
+                anim.SetBool(attackingState, false);
+            }
         }
-        else if (walking)
-            playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, 0);
+        else
+        {
+            if (Mathf.Abs(Input.GetAxisRaw(horizontal))> 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
+            {
+                walking = true;
+                lastMovement = new Vector2(Input.GetAxisRaw(horizontal), Input.GetAxisRaw(vertical));
+                playerRigidBody.velocity = lastMovement.normalized * walkSpeed * Time.deltaTime;
+            }
+        }
 
         if (!walking)
             playerRigidBody.velocity = Vector2.zero;
@@ -76,4 +87,5 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat(lastHorizontal, lastMovement.x);
         anim.SetFloat(lastVertical, lastMovement.y);
     }
+
 }
