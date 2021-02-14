@@ -80451,7 +80451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052082978, guid: 5f01cfa23e7371541b20ead3b9c11a47, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9271839
+      value: 0.9743701
       objectReference: {fileID: 0}
     - target: {fileID: 1052082978, guid: 5f01cfa23e7371541b20ead3b9c11a47, type: 3}
       propertyPath: m_LocalRotation.x
@@ -80463,16 +80463,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052082978, guid: 5f01cfa23e7371541b20ead3b9c11a47, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.37460646
+      value: -0.22495107
       objectReference: {fileID: 0}
     - target: {fileID: 1052082978, guid: 5f01cfa23e7371541b20ead3b9c11a47, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -44
+      value: -26
       objectReference: {fileID: 0}
     - target: {fileID: 8219814157246434825, guid: 5f01cfa23e7371541b20ead3b9c11a47,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219814157246434829, guid: 5f01cfa23e7371541b20ead3b9c11a47,
+        type: 3}
+      propertyPath: attackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219814157246434829, guid: 5f01cfa23e7371541b20ead3b9c11a47,
+        type: 3}
+      propertyPath: attackTimeCounter
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8219814157246434831, guid: 5f01cfa23e7371541b20ead3b9c11a47,
         type: 3}

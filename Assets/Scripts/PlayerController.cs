@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private const string lastHorizontal = "LastHorizontal";
     private const string lastVertical = "LastVertical";
     private const string walkingState = "Walking";
+    private const string attackingState = "Attacking";
 
     private Animator anim;
     private Rigidbody2D playerRigidBody;
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour
     public static bool playerCreated;
 
     public string nextPlaceName;
+
+    private bool attacking = false;
+    public float attackTime;
+    private float attackTimeCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +50,40 @@ public class PlayerController : MonoBehaviour
         //d = v * t
         walking = false;
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            attacking = true;
+            attackTimeCounter = attackTime;
+            playerRigidBody.velocity = Vector2.zero;
+            anim.SetBool(attackingState, true);
+        }
+
+        if (attacking)
+        {
+            attackTimeCounter -= Time.deltaTime;
+            if (attackTimeCounter < 0)
+            {
+                attacking = false;
+                anim.SetBool(attackingState, false);
+            }
+        }
+        else
+        {
+            Move();
+        }
+
+        if (!walking)
+            playerRigidBody.velocity = Vector2.zero;
+
+        anim.SetFloat(horizontal, Input.GetAxisRaw(horizontal));
+        anim.SetFloat(vertical, Input.GetAxisRaw(vertical));
+        anim.SetBool(walkingState, walking);
+        anim.SetFloat(lastHorizontal, lastMovement.x);
+        anim.SetFloat(lastVertical, lastMovement.y);
+    }
+
+    private void Move()
+    {
         if (Mathf.Abs(Input.GetAxisRaw(horizontal)) > 0.5f)
         {
             /*this.transform.Translate(new Vector3(Input.GetAxisRaw(horizontal) 
@@ -66,14 +105,5 @@ public class PlayerController : MonoBehaviour
         }
         else if (walking)
             playerRigidBody.velocity = new Vector2(playerRigidBody.velocity.x, 0);
-
-        if (!walking)
-            playerRigidBody.velocity = Vector2.zero;
-
-        anim.SetFloat(horizontal, Input.GetAxisRaw(horizontal));
-        anim.SetFloat(vertical, Input.GetAxisRaw(vertical));
-        anim.SetBool(walkingState, walking);
-        anim.SetFloat(lastHorizontal, lastMovement.x);
-        anim.SetFloat(lastVertical, lastMovement.y);
     }
 }
