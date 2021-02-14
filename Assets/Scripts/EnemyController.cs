@@ -24,8 +24,8 @@ public class EnemyController : MonoBehaviour
         enemyRigidBody = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
 
-        timeBetweenStepsCounter = timeBetweenSteps;
-        timeToMakeStepCounter = timeToMakeStep;
+        timeBetweenStepsCounter = timeBetweenSteps * Random.Range(0.5f, 1.5f);
+        timeToMakeStepCounter = timeToMakeStep * Random.Range(0.5f, 1.5f);
     }
 
     // Update is called once per frame
