@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
+    [SerializeField] int damage = 10;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<HealthManager>().DamageCharacter(damage);
         }
     }
 }
