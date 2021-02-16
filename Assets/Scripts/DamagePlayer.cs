@@ -6,7 +6,6 @@ public class DamagePlayer : MonoBehaviour
 {
     [SerializeField] int damage = 1;
     [SerializeField] GameObject damageNumber;
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
