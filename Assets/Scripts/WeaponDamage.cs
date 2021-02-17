@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    [SerializeField] int damage = 11;
+    public int damage = 10;
     [SerializeField] GameObject hurtAnimation;
     [SerializeField] GameObject hitPoint;
     [SerializeField] GameObject damageNumber;

@@ -8,12 +8,22 @@ public class CharacterStats : MonoBehaviour
     public int currentLevel;
     public int currentExp;
     public int[] expToLevelUp;
+    public int[] hpLevels, strengthLevel, defenseLevels;
 
     public Slider playerExpBar;
     public Text playerExpText;
-    public HealthManager playerHealth;
 
     public Text playerLevel;
+
+    private HealthManager healthManager;
+    private WeaponDamage weaponDamage;
+    private DamagePlayer[] enemyDamages;
+
+    private void Awake()
+    {
+        healthManager = GetComponent<HealthManager>();
+        weaponDamage = GetComponentInChildren<WeaponDamage>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +46,14 @@ public class CharacterStats : MonoBehaviour
         {
             currentLevel++;
             playerLevel.text = "Lvl: " + currentLevel;
-            playerHealth.maxHealth += 20 * currentLevel;
-            playerHealth.currentHealth = playerHealth.maxHealth;
 
             playerExpBar.minValue = currentExp;
             playerExpBar.maxValue = expToLevelUp[currentLevel];
             playerExpText.text = "XP: " + currentExp + "/" + expToLevelUp[currentLevel];
+
+            //Stats update
+            healthManager.UpDateMaxHealth(hpLevels[currentLevel]);
+            weaponDamage.damage += strengthLevel[currentLevel];
         }
     }
 
