@@ -15,15 +15,19 @@ public class NPCMovement : MonoBehaviour
     public float waitTime = 3.0f;
     private float waitCounter;
 
+    private string exitZone = null;
+
     public Vector2[] walkingDirection =
     {
-        new Vector2(1,0),
-        new Vector2(0,1),
         new Vector2(-1,0),
-        new Vector2(0,0-1)
+        new Vector2(1,0),
+        new Vector2(0,-1),
+        new Vector2(0,1)
     };
 
-    private int currentDirection;
+    public int currentDirection;
+
+    [SerializeField] BoxCollider2D villagerZone;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +43,30 @@ public class NPCMovement : MonoBehaviour
     {
         if (isWalking)
         {
+            if (villagerZone != null)
+            {
+                if (this.transform.position.x <= villagerZone.bounds.min.x)
+                {
+                    StopWalking();
+                    exitZone = "left";
+                }
+                else if (this.transform.position.x >= villagerZone.bounds.max.x)
+                {
+                    StopWalking();
+                    exitZone = "right";
+                }
+                else if (this.transform.position.y <= villagerZone.bounds.min.y)
+                {
+                    StopWalking();
+                    exitZone = "down";
+                }
+                else if (this.transform.position.y >= villagerZone.bounds.max.y)
+                {
+                    StopWalking();
+                    exitZone = "up";
+                }
+            }
+
             npcRigidbody.velocity = walkingDirection[currentDirection] * speed;
 
             walkCounter -= Time.deltaTime;
@@ -62,7 +90,18 @@ public class NPCMovement : MonoBehaviour
     private void StartWalking()
     {
         isWalking = true;
-        currentDirection = Random.Range(0, 4);
+        if (exitZone == null)
+            currentDirection = Random.Range(0, 4);
+        else if (exitZone == "left")
+            currentDirection = 1;
+        else if (exitZone == "right")
+            currentDirection = 0;
+        else if (exitZone == "down")
+            currentDirection = 3;
+        else if (exitZone == "up")
+            currentDirection = 2;
+
+        exitZone = null;
         walkCounter = walkTime;
     }
 
