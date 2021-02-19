@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 708033336739969136}
   - component: {fileID: 8824931828571672814}
   - component: {fileID: 674952281806707039}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -171,7 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409bd03bdc284f04d83cc6b255f9f9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
+  damageNumber: {fileID: 7495074109800890106, guid: 07e338458e0cf1c42a494719c4147d6d,
+    type: 3}
 --- !u!114 &674952281806707039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,5 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3dca8592bc6b94b85dfdb362c3c298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 40
+  currentHealth: 40
+  flashActive: 0
+  flashLength: 0
+  expWhenDefeated: 10
