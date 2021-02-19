@@ -10,12 +10,12 @@ public class NPCMovement : MonoBehaviour
     public bool isWalking;
 
     public float walkTime = 1.5f;
-    private float walkCounter;
+    public float walkCounter;
     
     public float waitTime = 3.0f;
-    private float waitCounter;
+    public float waitCounter;
 
-    private string exitZone = null;
+    public bool zoneBoundaryReached = false;
 
     public Vector2[] walkingDirection =
     {
@@ -25,7 +25,8 @@ public class NPCMovement : MonoBehaviour
         new Vector2(0,1)
     };
 
-    public int currentDirection;
+    public int currentDirection = 0;
+    public int latestDirection = 0;
 
     [SerializeField] BoxCollider2D villagerZone;
 
@@ -45,25 +46,15 @@ public class NPCMovement : MonoBehaviour
         {
             if (villagerZone != null)
             {
-                if (this.transform.position.x <= villagerZone.bounds.min.x)
+                if (this.transform.position.x <= villagerZone.bounds.min.x || this.transform.position.x >= villagerZone.bounds.max.x ||
+                    this.transform.position.y <= villagerZone.bounds.min.y || this.transform.position.y >= villagerZone.bounds.max.y)
                 {
-                    StopWalking();
-                    exitZone = "left";
-                }
-                else if (this.transform.position.x >= villagerZone.bounds.max.x)
-                {
-                    StopWalking();
-                    exitZone = "right";
-                }
-                else if (this.transform.position.y <= villagerZone.bounds.min.y)
-                {
-                    StopWalking();
-                    exitZone = "down";
-                }
-                else if (this.transform.position.y >= villagerZone.bounds.max.y)
-                {
-                    StopWalking();
-                    exitZone = "up";
+                    if (currentDirection == 1 || currentDirection == 3)
+                    {
+                        currentDirection--;
+                    }
+                    else
+                        currentDirection++;
                 }
             }
 
@@ -72,6 +63,8 @@ public class NPCMovement : MonoBehaviour
             walkCounter -= Time.deltaTime;
             if (walkCounter < 0)
             {
+                if (zoneBoundaryReached)
+                    zoneBoundaryReached = false;
                 StopWalking();
             }
         }
@@ -90,18 +83,9 @@ public class NPCMovement : MonoBehaviour
     private void StartWalking()
     {
         isWalking = true;
-        if (exitZone == null)
+        while (latestDirection == currentDirection)
             currentDirection = Random.Range(0, 4);
-        else if (exitZone == "left")
-            currentDirection = 1;
-        else if (exitZone == "right")
-            currentDirection = 0;
-        else if (exitZone == "down")
-            currentDirection = 3;
-        else if (exitZone == "up")
-            currentDirection = 2;
-
-        exitZone = null;
+        latestDirection = currentDirection;
         walkCounter = walkTime;
     }
 

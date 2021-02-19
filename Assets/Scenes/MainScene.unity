@@ -9025,13 +9025,17 @@ MonoBehaviour:
   speed: 1.5
   isWalking: 0
   walkTime: 1.5
+  walkCounter: 0
   waitTime: 3
+  waitCounter: 0
+  zoneBoundaryReached: 0
   walkingDirection:
-  - {x: 1, y: 0}
-  - {x: 0, y: 1}
   - {x: -1, y: 0}
+  - {x: 1, y: 0}
   - {x: 0, y: -1}
+  - {x: 0, y: 1}
   currentDirection: 0
+  latestDirection: 0
   villagerZone: {fileID: 2098523407}
 --- !u!1001 &964705945
 PrefabInstance:
