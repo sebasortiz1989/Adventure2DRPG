@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
-    [SerializeField] int damage = 1;
+    public int damage = 10;
     [SerializeField] GameObject damageNumber;
+
+    private CharacterStats playerStats;
+    private int playerLevel;
+
+    private void Awake()
+    {
+        playerStats = FindObjectOfType<CharacterStats>();
+        playerLevel = playerStats.currentLevel;
+    }
+
+    private void Update()
+    {
+        if (playerStats.currentLevel > playerLevel)
+        {
+            damage = damage - playerStats.defenseLevels[playerStats.currentLevel];
+            playerLevel = playerStats.currentLevel;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
