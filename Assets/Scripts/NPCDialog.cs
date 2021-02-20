@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NPCDialog : MonoBehaviour
 {
-    public string dialog;
+    public string[] dialog;
     private DialogManager manager;
-    private bool playerInTheZone;
+    public bool playerInTheZone;
 
     // Start is called before the first frame update
     void Start()
