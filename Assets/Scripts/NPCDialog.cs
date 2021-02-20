@@ -20,6 +20,10 @@ public class NPCDialog : MonoBehaviour
         if (playerInTheZone && Input.GetKeyDown(KeyCode.Return))
         {
             manager.ShowDialog(dialog);
+            if (gameObject.GetComponentInParent<NPCMovement>() != null)
+            {
+                gameObject.GetComponentInParent<NPCMovement>().isTalking = true;
+            }
         }
     }
 
