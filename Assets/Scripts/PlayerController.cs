@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float walkSpeed = 4.0f;
-
+    
     private bool walking = false;
     public Vector2 lastMovement = Vector2.zero;
 
@@ -27,12 +27,15 @@ public class PlayerController : MonoBehaviour
     private bool attacking = false;
     public float attackTime;
     private float attackTimeCounter;
+    private DialogManager dialogManager;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         playerRigidBody = GetComponent<Rigidbody2D>();
+
+        dialogManager = FindObjectOfType<DialogManager>();
 
         if (!playerCreated)
         {
@@ -50,7 +53,14 @@ public class PlayerController : MonoBehaviour
     {
         //d = v * t
         walking = false;
+        if (!dialogManager.dialogActive)
+        {
+            PlayerBehaviour();
+        }
+    }
 
+    private void PlayerBehaviour()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             attacking = true;
@@ -70,7 +80,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Mathf.Abs(Input.GetAxisRaw(horizontal))> 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
+            if (Mathf.Abs(Input.GetAxisRaw(horizontal)) > 0.5f || Mathf.Abs(Input.GetAxisRaw(vertical)) > 0.5f)
             {
                 walking = true;
                 lastMovement = new Vector2(Input.GetAxisRaw(horizontal), Input.GetAxisRaw(vertical));
@@ -87,5 +97,4 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat(lastHorizontal, lastMovement.x);
         anim.SetFloat(lastVertical, lastMovement.y);
     }
-
 }
