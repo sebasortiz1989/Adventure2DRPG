@@ -13,6 +13,11 @@ public class Quest : MonoBehaviour
     public bool needsItem;
     public string itemNeeded;
 
+    public bool needsEnemy;
+    public string enemyName;
+    public int numberOfEnemies;
+    public int enemiesKilled;
+
     [SerializeField] int questExperience;
 
     // Start is called before the first frame update
@@ -26,8 +31,18 @@ public class Quest : MonoBehaviour
     {
         if (needsItem && manager.itemCollected.Equals(itemNeeded))
         {
-            manager.itemCollected = null;
+            manager.itemCollected = "NoItem";
             CompleteQuest();
+        }
+
+        if (needsEnemy && manager.enemyKilled.Equals(enemyName))
+        {
+            manager.enemyKilled = "NoEnemy";
+            enemiesKilled++;
+            if (enemiesKilled >= numberOfEnemies)
+            {
+                CompleteQuest();
+            }
         }
     }
 
