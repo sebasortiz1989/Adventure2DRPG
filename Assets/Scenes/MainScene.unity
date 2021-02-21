@@ -9213,6 +9213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 892240028}
+  - component: {fileID: 892240030}
   - component: {fileID: 892240029}
   m_Layer: 0
   m_Name: ricardo_house
@@ -9247,7 +9248,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f6781d04e80d9744a7c95db8a3bc01a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9261,7 +9262,7 @@ AudioSource:
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -9331,6 +9332,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &892240030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892240027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977b699786106ce48a4c1d309d487744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultAudioLevel: 0.5
 --- !u!1001 &900697686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85326,6 +85340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1657838813}
   - component: {fileID: 1657838814}
+  - component: {fileID: 1657838815}
   m_Layer: 0
   m_Name: forest_outside
   m_TagString: Untagged
@@ -85359,7 +85374,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3b5c6d40936e74940a9ca3213cdbab02, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -85443,6 +85458,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1657838815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657838812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977b699786106ce48a4c1d309d487744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultAudioLevel: 0.534
 --- !u!1001 &1657923167
 PrefabInstance:
   m_ObjectHideFlags: 0
