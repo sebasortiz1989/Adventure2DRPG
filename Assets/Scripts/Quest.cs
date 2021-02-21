@@ -6,13 +6,16 @@ public class Quest : MonoBehaviour
 {
     public int questID;
     private QuestManager manager;
+    private CharacterStats charStats;
 
     public string startText, completeText;
+
+    [SerializeField] int questExperience;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = GetComponentInParent<QuestManager>();
+        charStats = FindObjectOfType<CharacterStats>();
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class Quest : MonoBehaviour
 
     public void StartQuest()
     {
+        manager = GetComponentInParent<QuestManager>();
         manager.ShowQuestText(startText);
     }
 
@@ -30,6 +34,7 @@ public class Quest : MonoBehaviour
     {
         manager.ShowQuestText(completeText);
         manager.questCompleted[questID] = true;
+        charStats.AddExperience(questExperience);
         gameObject.SetActive(false);
     }
 }
