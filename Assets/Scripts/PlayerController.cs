@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        lastMovement = new Vector2(0, -1);
     }
 
     // Update is called once per frame

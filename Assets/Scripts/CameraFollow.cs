@@ -8,10 +8,15 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 targetPosition;
     [SerializeField] private float cameraSpeed = 4.0f;
 
+    private Camera theCamera;
+    private Vector3 minLimits, maxLimits;
+
+    private float halfWidth, halfHeight;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,5 +26,20 @@ public class CameraFollow : MonoBehaviour
                                      followTarget.transform.position.y, -10);
         this.transform.position = Vector3.Lerp(this.transform.position, 
                                                 targetPosition, cameraSpeed * Time.deltaTime); //Lerp is linear interpolation
+
+        float clampX = Mathf.Clamp(this.transform.position.x, minLimits.x + halfWidth, maxLimits.x - halfWidth);
+        float clampY = Mathf.Clamp(this.transform.position.y, minLimits.y + halfHeight, maxLimits.y - halfHeight);
+        this.transform.position = new Vector3(clampX, clampY, this.transform.position.z);
+    }
+
+    public void ChangeLimits(BoxCollider2D newCameraLimits)
+    {
+        minLimits = newCameraLimits.bounds.min;
+        maxLimits = newCameraLimits.bounds.max;
+
+        theCamera = GetComponent<Camera>();
+
+        halfHeight = theCamera.orthographicSize;
+        halfWidth = halfHeight / Screen.height * Screen.width;
     }
 }
