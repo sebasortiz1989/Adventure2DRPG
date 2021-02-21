@@ -10,6 +10,9 @@ public class Quest : MonoBehaviour
 
     public string startText, completeText;
 
+    public bool needsItem;
+    public string itemNeeded;
+
     [SerializeField] int questExperience;
 
     // Start is called before the first frame update
@@ -21,7 +24,11 @@ public class Quest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (needsItem && manager.itemCollected.Equals(itemNeeded))
+        {
+            manager.itemCollected = null;
+            CompleteQuest();
+        }
     }
 
     public void StartQuest()
