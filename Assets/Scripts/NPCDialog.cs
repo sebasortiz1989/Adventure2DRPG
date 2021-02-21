@@ -34,4 +34,12 @@ public class NPCDialog : MonoBehaviour
             playerInTheZone = true;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerInTheZone = false;
+        }
+    }
 }
