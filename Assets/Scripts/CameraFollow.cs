@@ -9,7 +9,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float cameraSpeed = 4.0f;
 
     private Camera theCamera;
-    private BoxCollider2D cameraLimits;
     private Vector3 minLimits, maxLimits;
 
     private float halfWidth, halfHeight;
@@ -17,14 +16,6 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraLimits = GameObject.Find("CameraLimits").GetComponent<BoxCollider2D>();
-        minLimits = cameraLimits.bounds.min;
-        maxLimits = cameraLimits.bounds.max;
-
-        theCamera = GetComponent<Camera>();
-        halfHeight = theCamera.orthographicSize;
-        
-        halfWidth = halfHeight / Screen.height * Screen.width;
 
     }
 
@@ -39,5 +30,16 @@ public class CameraFollow : MonoBehaviour
         float clampX = Mathf.Clamp(this.transform.position.x, minLimits.x + halfWidth, maxLimits.x - halfWidth);
         float clampY = Mathf.Clamp(this.transform.position.y, minLimits.y + halfHeight, maxLimits.y - halfHeight);
         this.transform.position = new Vector3(clampX, clampY, this.transform.position.z);
+    }
+
+    public void ChangeLimits(BoxCollider2D newCameraLimits)
+    {
+        minLimits = newCameraLimits.bounds.min;
+        maxLimits = newCameraLimits.bounds.max;
+
+        theCamera = GetComponent<Camera>();
+
+        halfHeight = theCamera.orthographicSize;
+        halfWidth = halfHeight / Screen.height * Screen.width;
     }
 }
