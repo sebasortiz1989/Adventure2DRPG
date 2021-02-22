@@ -18,9 +18,12 @@ public class HealthManager : MonoBehaviour
     public string enemyName;
     private QuestManager manager;
 
+    private SFXManager sfxManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        sfxManager = FindObjectOfType<SFXManager>();
         currentHealth = maxHealth;
         characterRenderer = GetComponent<SpriteRenderer>();
         manager = FindObjectOfType<QuestManager>();
@@ -42,6 +45,7 @@ public class HealthManager : MonoBehaviour
             }
 
             gameObject.SetActive(false);
+            sfxManager.playerDeath.Play();
             Destroy(gameObject);
         }
 
@@ -76,6 +80,7 @@ public class HealthManager : MonoBehaviour
             flashActive = true;
             flashCounter = flashLength;
         }
+        sfxManager.playerHurt.Play();
     }
 
     public void UpDateMaxHealth(int newMaxHealth)
